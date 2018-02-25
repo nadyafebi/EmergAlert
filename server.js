@@ -3,6 +3,8 @@
 */
 const express = require('express');
 const path = require('path');
+var mongoose = require('mongoose');
+var Message = mongoose.model('Message');
 
 /*
   Express Setup
@@ -35,4 +37,13 @@ app.get('/', function(req, res) {
 
 app.get('/test', function(req, res) {
   res.sendFile(html('test'));
+});
+
+app.get('/', function(req, res) {
+  Message.find({}).populate().exec().then(messages => {
+    res.render('index', {
+      title: 'Index',
+      messages: messages
+    });
+  })
 });

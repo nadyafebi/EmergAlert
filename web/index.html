@@ -9,13 +9,19 @@
     <link rel="stylesheet" href="/css/c3.css">
     <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="/js/bundle.js"></script>
+
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.js"></script>
 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js" data-main="/js/sentiment"></script>   -->
+
     <script src="/js/bing_maps.js"></script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AmA3g4fVkW_W0260B6WfwDR13pRvztfOlwIOEnuS01boL8g_SMA6IUhf_gx0EicT' async defer></script>
+    <script src="/js/sentiment.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </head>
   <body>
 
@@ -64,7 +70,7 @@
           <div class="grid-block collapse medium-12 large-12 vertical">
     
               <ul class="tabs" data-tabs id="example-tabs">
-                <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Received</a></li>
+                <li class="tabs-title"><a href="#panel1" aria-selected="true">Received</a></li>
                 <li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Sent</a></li>
                 <li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Data</a></li>
               </ul>
@@ -89,7 +95,6 @@
                     <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
                     <p>:( :( :( </p>
                     <hr />
-    
                 </div>
                 <div class="tabs-panel" id="panel2">
                   <h4><img src="http://placehold.it/30x30">Sent at 10:10AM</h4>
@@ -127,7 +132,7 @@
                                }
                           }
                       });
-                      
+    
                       setTimeout(function () {
                           chart.load({
                             columns: [
@@ -272,6 +277,5 @@
       </div>
     </div>
 
-    <script src="/js/bundle.js"></script>
   </body>
 </html>

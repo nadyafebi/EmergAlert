@@ -26,6 +26,10 @@
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-sass": "^3.1.0",
     "jquery": "^3.3.1",
-    "panini": "^1.6.2"
+    "panini": "^1.6.2",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "restify": "^6.3.4",
+    "rp": "^0.2.0"
   }
 }

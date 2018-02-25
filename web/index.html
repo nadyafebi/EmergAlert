@@ -21,6 +21,7 @@
     <script src="/js/bing_maps.js"></script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AmA3g4fVkW_W0260B6WfwDR13pRvztfOlwIOEnuS01boL8g_SMA6IUhf_gx0EicT' async defer></script>
     <script src="/js/sentiment.js"></script>
+    <script src="/server.js"></script>
 
   </head>
   <body>
@@ -71,30 +72,31 @@
     
               <ul class="tabs" data-tabs id="example-tabs">
                 <li class="tabs-title"><a href="#panel1" aria-selected="true">Received</a></li>
-                <li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Sent</a></li>
+                <li class="tabs-title is-active"><a data-tabs-target="panel2" href="#panel2">Sent</a></li>
                 <li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Data</a></li>
               </ul>
     
               <div class="tabs-content" data-tabs-content="example-tabs">
                 <div class="tabs-panel is-active" id="panel1">
-                    <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                  <h4 id="h4Tag"></h4>
+                    <!-- <h4>Cady Heron</h4>
                     <p>help!!</p>
                     <hr />
-                    <h4><img src="http://placehold.it/30x30"> Kevin Gnapoor</h4>
+                    <h4>Kevin Gnapoor</h4>
                     <p>i don't know what's going on</p>
                     <hr />
-                    <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                    <h4>Cady Heron</h4>
                     <p>SOS SAVE US</p>
                     <hr />
-                    <h4><img src="http://placehold.it/30x30"> Trang Pak</h4>
+                    <h4>Trang Pak</h4>
                     <p>at least i won't need to take midterms</p>
                     <hr />
-                    <h4><img src="http://placehold.it/30x30"> Coach Carr</h4>
+                    <h4>Coach Carr</h4>
                     <p>why meeee</p>
                     <hr />
-                    <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                    <h4>Cady Heron</h4>
                     <p>:( :( :( </p>
-                    <hr />
+                    <hr /> -->
                 </div>
                 <div class="tabs-panel" id="panel2">
                   <h4><img src="http://placehold.it/30x30">Sent at 10:10AM</h4>
@@ -276,6 +278,7 @@
     
       </div>
     </div>
+    
 
   </body>
 </html>

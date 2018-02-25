@@ -1,6 +1,7 @@
 var new_sentiment = 0;
 var new_pos_senti = 89;
 var new_neg_senti = 111;
+var scoreRaw = 0;
 
 console.log('check if this is working');
 
@@ -28,11 +29,6 @@ document.addEventListener(
         updateSentence(runningInput, '?', false);
       }
     }
-    if(ev.keyCode == 13) {
-      ev.preventDefault();
-      $(this).val('');
-      return false;
-    }
   },
   true
 );
@@ -43,8 +39,17 @@ document.onkeypress = function(e){
     if (keyCode == '13'){
       // Enter pressed
       updateSentence(runningInput, '.', true);
+      document.getElementById("text-input-box").value = "";
+
+      document.getElementById("display-sentiment").innerHTML = calcSentiment();
       return false;
     }
+}
+
+function calcSentiment() {
+  new_sentiment = normalizeScore(scoreRaw);
+  console.log('new sentiment: ', new_sentiment);
+  return new_sentiment.toFixed(3);
 }
 
 function updateSentence(val, delim, override){
@@ -121,7 +126,7 @@ function getKeyWords(currentText, callback, dataSoFar){
 }
 
 function setStorage(currentText, keyPhrases, data){
-  var scoreRaw = data.documents[0].score;
+  scoreRaw = data.documents[0].score;
   console.log('scoreRaw', scoreRaw);
 
   normalizeScore(scoreRaw);
@@ -132,10 +137,12 @@ function normalizeScore(score) {
     score = score - 0.5;
     new_pos_senti = 200*score;
     console.log('positive score: ', new_pos_senti);
+    return score + 0.5;
   } else {
     score = score + 0.5;
     new_neg_senti = 200*score;
     console.log('negative score: ', new_neg_senti);
+    return score - 0.5;
   }
 }
 

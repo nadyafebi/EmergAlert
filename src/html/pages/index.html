@@ -21,9 +21,10 @@
       </div>
     </div>
     <div id="controls" class="row column">
-      <h3>Controls</h3>
+      <h3>Security Camera Footage</h3>
       <div class="contourLegend">
           <div style="background-color: rgba(215, 25, 28, 0.5)">High Activity </div>
+          <div style="background-color: rgba(235, 140, 14, 0.5)"> Medium-High </div>
           <div style="background-color: rgba(235, 140, 14, 0.5)"> Medium-High </div>
           <div style="background-color: rgba(255, 255, 0, 0.5)"> Medium Activity </div>
           <div style="background-color: rgba(140, 202, 32, 0.5)"> Medium-Low </div>
@@ -36,7 +37,7 @@
     </div>
   </div>
   <div class="medium-5 small-12 columns">
-    <h3>Notification</h3>
+    <h3>Notifications</h3>
 
     <div id="chart4"></div>
     <script>
@@ -61,7 +62,7 @@
       setTimeout(function () {
             chart.load({
               columns: [
-                  ['positive', 225, 200, 80, 100, 87, 45],
+                  ['positive', 225, 200, 80, 100, 87, 145],
                   ['negative', 100, 80, 75, 190, 160, 68]
               ],
               types: {
@@ -78,7 +79,7 @@
       setTimeout(function () {
             chart.load({
               columns: [
-                  ['positive', 200, 80, 100, 87, 45, 65],
+                  ['positive', 200, 80, 100, 87, 145, 65],
                   ['negative', 80, 75, 190, 160, 68, 89]
               ],
               types: {
@@ -95,7 +96,7 @@
         setTimeout(function () {
             chart.load({
               columns: [
-                  ['positive', 80, 100, 87, 45, 65, 89],
+                  ['positive', 80, 100, 87, 145, 65, 89],
                   ['negative', 75, 190, 160, 68, 89, 111]
               ],
               types: {
@@ -109,10 +110,10 @@
             });
         }, 6000);
 
-        var pos_num1 = 80; var pos_num2 = 100; var pos_num3 = 87; var pos_num4 = 45; var pos_num5 = 65; var pos_num6 = 89;
+        var pos_num1 = 80; var pos_num2 = 100; var pos_num3 = 87; var pos_num4 = 145; var pos_num5 = 65; var pos_num6 = 89;
         var neg_num1 = 75; var neg_num2 = 190; var neg_num3 = 160; var neg_num4 = 68; var neg_num5 = 89; var neg_num6 = 111;
         
-        for (i = 8000; i <= 32000; i += 2000) {
+        for (i = 8000; i <= 40000; i += 2000) {
             console.log('going through loop');
 
             setTimeout(function () {
@@ -121,26 +122,26 @@
 
             // if (pos_num6 != new_pos_senti & neg_num6 != new_neg_senti) {
 
-              // pos_num1 = pos_num2;
-              // pos_num2 = pos_num3;
-              // pos_num3 = pos_num4;
-              // pos_num4 = pos_num5;
-              // pos_num5 = pos_num6;
-              // pos_num6 = new_pos_senti;
+              pos_num1 = pos_num2;
+              pos_num2 = pos_num3;
+              pos_num3 = pos_num4;
+              pos_num4 = pos_num5;
+              pos_num5 = pos_num6;
+              pos_num6 = pos_num1;
 
-              // neg_num1 = neg_num2;
-              // neg_num2 = neg_num3;
-              // neg_num3 = neg_num4;
-              // neg_num4 = neg_num5;
-              // neg_num5 = neg_num6;
-              // neg_num6 = new_neg_senti;
+              neg_num1 = neg_num2;
+              neg_num2 = neg_num3;
+              neg_num3 = neg_num4;
+              neg_num4 = neg_num5;
+              neg_num5 = neg_num6;
+              neg_num6 = neg_num1;
 
               chart.load({
                 columns: [
-                    // ['positive', pos_num1, pos_num2, pos_num3, pos_num4, pos_num5, new_pos_senti],
-                    // ['negative', neg_num1, neg_num2, neg_num3, neg_num4, neg_num5, new_neg_senti]
-                    ['positive', 100, 87, 45, 65, 89, new_pos_senti],
-                    ['negative', 190, 160, 68, 89, 111, new_neg_senti]
+                    ['positive', pos_num1, pos_num2, pos_num3, pos_num4, pos_num5, pos_num6],
+                    ['negative', neg_num1, neg_num2, neg_num3, neg_num4, neg_num5, pos_num6]
+                    // ['positive', 100, 87, 45, 65, 89, new_pos_senti],
+                    // ['negative', 190, 160, 68, 89, 111, new_neg_senti]
                 ],
                 types: {
                     positive: 'area-spline',
@@ -159,164 +160,44 @@
 
     <div class="message-input collapse shrink">
       <span class="inline-label">
-        <input type="text" placeholder="Message">
-        <a href="#" class="button">Send</a>
+          <input type="text" placeholder="sentiment" id="text-input-box">
+          <a href="#" class="button">Send</a>
       </span>
     </div>
 
+    <div style="display: flex; vertical-align: text-bottom;">
+      <h4>Most recent sentiment: </h4>
+      <div id="display-sentiment" style="font-size: 24px; padding-left: 10px;">
+      </div>
+    </div>
+    <h6>Closer to one is more positive, closer to 0 is more negative</h6>
+
     <div class="grid-frame">
 
-      <div class="grid-block collapse medium-12 large-12 vertical">
+      <div class="grid-block medium-4 large-4 vertical">
 
           <ul class="tabs" data-tabs id="example-tabs">
-            <li class="tabs-title"><a href="#panel1" aria-selected="true">Received</a></li>
-            <li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Sent</a></li>
-            <li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Data</a></li>
+            <li class="tabs-title is-active"><a href="#panel1d" aria-selected="true">Received Messages</a></li>
           </ul>
 
           <div class="tabs-content" data-tabs-content="example-tabs">
-            <div class="tabs-panel is-active" id="panel1">
-                <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+            <div class="tabs-panel is-active" id="panel1d">
+                <h4>Diane Tobit</h4>
                 <p>help!!</p>
                 <hr />
-                <h4><img src="http://placehold.it/30x30"> Kevin Gnapoor</h4>
+                <h4>Christine Sun</h4>
                 <p>i don't know what's going on</p>
                 <hr />
-                <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                <h4>Clara Chu</h4>
                 <p>SOS SAVE US</p>
                 <hr />
-                <h4><img src="http://placehold.it/30x30"> Trang Pak</h4>
+                <h4>Nadya Djojosantoso</h4>
                 <p>at least i won't need to take midterms</p>
                 <hr />
-                <h4><img src="http://placehold.it/30x30"> Coach Carr</h4>
-                <p>why meeee</p>
+                <h4>Clara Chu</h4>
+                <p>why meeee :(</p>
+
                 <hr />
-                <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
-                <p>:( :( :( </p>
-                <hr />
-            </div>
-            <div class="tabs-panel" id="panel2">
-              <h4><img src="http://placehold.it/30x30">Sent at 10:10AM</h4>
-                <p>All students stay calm, we are investigating this right now.</p>
-                <hr />
-                <h4><img src="http://placehold.it/30x30">Sent at 10:16AM</h4>
-                <p>Remain where you are and do not going outside</p>
-                <hr />
-
-                <div class="message-input collapse shrink">
-                  <span class="inline-label">
-                    <input type="text" placeholder="Message">
-                    <a href="#" class="button">Send</a>
-                  </span>
-                </div>
-            </div>
-            <div class="tabs-panel" id="panel3">
-              <p>Statistics</p>
-                <div id="chart4"></div>
-                <script>
-                  var chart = c3.generate({
-                      bindto: '#chart4',
-                      data: {
-                          columns: [
-                              ['positive', 144, 225, 300, 80, 100, 87],
-                              ['negative', 70, 100, 80, 75, 190, 160]
-                          ],
-                          types: {
-                              positive: 'area-spline',
-                              negative: 'area-spline'
-                          },
-                           colors: {
-                             positive: 'lightblue',
-                             negative: 'lightpink'
-                           }
-                      }
-                  });
-
-                  // setTimeout(function () {
-                  //     chart.load({
-                  //       columns: [
-                  //           ['positive', 225, 300, 80, 100, 87, 53],
-                  //           ['negative', 100, 80, 75, 190, 160, 200]
-                  //       ],
-                  //       types: {
-                  //           positive: 'area-spline',
-                  //           negative: 'area-spline'
-                  //       },
-                  //        colors: {
-                  //          positive: 'lightblue',
-                  //          negative: 'lightpink'
-                  //        }
-                  //     });
-                  // }, 2000);
-
-                  // setTimeout(function () {
-                  //     chart.load({
-                  //       columns: [
-                  //           ['positive', 300, 80, 100, 87, 53, 20],
-                  //           ['negative', 80, 75, 190, 160, 200, 220]
-                  //       ],
-                  //       types: {
-                  //           positive: 'area-spline',
-                  //           negative: 'area-spline'
-                  //       },
-                  //        colors: {
-                  //          positive: 'lightblue',
-                  //          negative: 'lightpink'
-                  //        }
-                  //     });
-                  // }, 4000);
-
-                  // setTimeout(function () {
-                  //     chart.load({
-                  //       columns: [
-                  //           ['positive', 80, 100, 87, 53, 20, 35],
-                  //           ['negative', 75, 190, 160, 170, 200, 193]
-                  //       ],
-                  //       types: {
-                  //           positive: 'area-spline',
-                  //           negative: 'area-spline'
-                  //       },
-                  //        colors: {
-                  //          positive: 'lightblue',
-                  //          negative: 'lightpink'
-                  //        }
-                  //     });
-                  // }, 6000);
-
-                  // setTimeout(function () {
-                  //     chart.load({
-                  //       columns: [
-                  //           ['positive', 80, 100, 87, 53, 20, 35],
-                  //           ['negative', 75, 190, 160, 170, 200, 193]
-                  //       ],
-                  //       types: {
-                  //           positive: 'area-spline',
-                  //           negative: 'area-spline'
-                  //       },
-                  //        colors: {
-                  //          positive: 'lightblue',
-                  //          negative: 'lightpink'
-                  //        }
-                  //     });
-                  // }, 8000);
-
-                  // setTimeout(function () {
-                  //     chart.load({
-                  //       columns: [
-                  //           ['positive', 100, 87, 53, 20, 35, 40],
-                  //           ['negative', 190, 160, 170, 200, 193, 170]
-                  //       ],
-                  //       types: {
-                  //           positive: 'area-spline',
-                  //           negative: 'area-spline'
-                  //       },
-                  //        colors: {
-                  //          positive: 'lightblue',
-                  //          negative: 'lightpink'
-                  //        }
-                  //     });
-                  // }, 10000);
-                </script>
             </div>
           </div>
       </div>

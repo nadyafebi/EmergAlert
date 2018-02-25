@@ -1,19 +1,19 @@
 <div id="navbar" class="expanded row align-middle">
   <div class="small-6 columns">
-    <h3>School Security System</h3>
+    <h3 style="color: white">School Security System</h3>
   </div>
   <div class="small-6 columns text-right">
-    <p>A</p>
+    <p>Details</p>
   </div>
 </div>
 
 <div id="content" class="row">
-  <div class="full-height medium-6 columns">
+  <div class="full-height medium-7 columns">
     <div id="security-feed" class="row column">
       <div class="full-height card">
         <div class="card-section">
           <div class="responsive-embed">
-            <video autoplay>
+            <video>
               <source src="vid/cam.mp4" type="video/mp4">
             </video>
           </div>
@@ -22,80 +22,190 @@
     </div>
     <div id="controls" class="row column">
       <h3>Controls</h3>
+      <div class="contourLegend">
+          <div style="background-color: rgba(215, 25, 28, 0.5)">High Activity </div>
+          <div style="background-color: rgba(235, 140, 14, 0.5)"> Medium-High </div>
+          <div style="background-color: rgba(255, 255, 0, 0.5)"> Medium Activity </div>
+          <div style="background-color: rgba(140, 202, 32, 0.5)"> Medium-Low </div>
+          <div style="background-color: rgba(25, 150, 65, 0.5)"> Low Activity</div>
+      </div>
+      <div class="map-padding"></div>
+      <div id="myMap" style="position:relative;width:600px;height:400px;float:left;"></div>
+
+
     </div>
   </div>
-  <div class="medium-6 small-12 columns">
+  <div class="medium-5 small-12 columns">
     <h3>Notification</h3>
 
-<div class="grid-frame">
-      <div zf-panel position="left" id="sidebar" class="medium-grid-block collapse medium-3 large-3 vertical">
-        <div class="grid-content collapse shrink hide-for-medium">
-          <a href="" class="secondary button expand" zf-close>Close</a>
-        </div>
-        <div class="grid-content collapse shrink">
-          <img src="http://placehold.it/400x150&text=Logo">
-        </div>
-        <div class="grid-content">
-          
-          <section class="block-list">
-            <header>Rooms</header>
-            <ul>
-              <li>
-                <a href="#">
-                  Slam Book
-                  <span class="block-list-label">7</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Foundation Chat
-                  <span class="block-list-label">2</span>
-                </a>
-              </li>
-              <li>
-                <a class="success" href="#">
-                  LolCats
-                  <span class="block-list-label">2</span>
-                </a>
-              </li>
-            </ul>
-          </section>
+    <div class="grid-frame">
 
-          <section class="block-list">
-            <header>People</header>
-            <ul>
-              <li>
-                <a href="#">
-                  Glen Coco
-                  <span class="block-list-label">2</span>
-                </a>
-              </li>
-              <li>
-                <a class="success" href="#">
-                  Guy Guyerson
-                  <span class="block-list-label">2</span>
-                </a>
-              </li>
-            </ul>
-          </section>
-        </div>
-        <div class="grid-content collapse shrink avatar-section">
-            <img src="http://placehold.it/50x50">
-            Regina George 
-        </div>
-      </div>
+      <div class="grid-block collapse medium-12 large-12 vertical">
 
-      <div class="grid-block collapse medium-9 large-9 vertical">
-        <div id="header" class="shrink collapse grid-content">
+          <ul class="tabs" data-tabs id="example-tabs">
+            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Received</a></li>
+            <li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Sent</a></li>
+            <li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Data</a></li>
+          </ul>
+
+          <div class="tabs-content" data-tabs-content="example-tabs">
+            <div class="tabs-panel is-active" id="panel1">
+                <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                <p>help!!</p>
+                <hr />
+                <h4><img src="http://placehold.it/30x30"> Kevin Gnapoor</h4>
+                <p>i don't know what's going on</p>
+                <hr />
+                <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                <p>SOS SAVE US</p>
+                <hr />
+                <h4><img src="http://placehold.it/30x30"> Trang Pak</h4>
+                <p>at least i won't need to take midterms</p>
+                <hr />
+                <h4><img src="http://placehold.it/30x30"> Coach Carr</h4>
+                <p>why meeee</p>
+                <hr />
+                <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                <p>:( :( :( </p>
+                <hr />
+
+            </div>
+            <div class="tabs-panel" id="panel2">
+              <h4><img src="http://placehold.it/30x30">Sent at 10:10AM</h4>
+                <p>All students stay calm, we are investigating this right now.</p>
+                <hr />
+                <h4><img src="http://placehold.it/30x30">Sent at 10:16AM</h4>
+                <p>Remain where you are and do not going outside</p>
+                <hr />
+
+                <div class="message-input collapse shrink">
+                  <span class="inline-label">
+                    <input type="text" placeholder="Message">
+                    <a href="#" class="button">Send</a>
+                  </span>
+                </div>
+            </div>
+            <div class="tabs-panel" id="panel3">
+              <p>Statistics</p>
+                <div id="chart4"></div>
+                <script>
+                  var chart = c3.generate({
+                      bindto: '#chart4',
+                      data: {
+                          columns: [
+                              ['positive', 144, 225, 300, 80, 100, 87],
+                              ['negative', 70, 100, 80, 75, 190, 160]
+                          ],
+                          types: {
+                              positive: 'area-spline',
+                              negative: 'area-spline'
+                          },
+                           colors: {
+                             positive: 'lightblue',
+                             negative: 'lightpink'
+                           }
+                      }
+                  });
+                  
+                  setTimeout(function () {
+                      chart.load({
+                        columns: [
+                            ['positive', 225, 300, 80, 100, 87, 53],
+                            ['negative', 100, 80, 75, 190, 160, 200]
+                        ],
+                        types: {
+                            positive: 'area-spline',
+                            negative: 'area-spline'
+                        },
+                         colors: {
+                           positive: 'lightblue',
+                           negative: 'lightpink'
+                         }
+                      });
+                  }, 2000);
+
+                  setTimeout(function () {
+                      chart.load({
+                        columns: [
+                            ['positive', 300, 80, 100, 87, 53, 20],
+                            ['negative', 80, 75, 190, 160, 200, 220]
+                        ],
+                        types: {
+                            positive: 'area-spline',
+                            negative: 'area-spline'
+                        },
+                         colors: {
+                           positive: 'lightblue',
+                           negative: 'lightpink'
+                         }
+                      });
+                  }, 4000);
+
+                  setTimeout(function () {
+                      chart.load({
+                        columns: [
+                            ['positive', 80, 100, 87, 53, 20, 35],
+                            ['negative', 75, 190, 160, 170, 200, 193]
+                        ],
+                        types: {
+                            positive: 'area-spline',
+                            negative: 'area-spline'
+                        },
+                         colors: {
+                           positive: 'lightblue',
+                           negative: 'lightpink'
+                         }
+                      });
+                  }, 6000);
+
+                  setTimeout(function () {
+                      chart.load({
+                        columns: [
+                            ['positive', 80, 100, 87, 53, 20, 35],
+                            ['negative', 75, 190, 160, 170, 200, 193]
+                        ],
+                        types: {
+                            positive: 'area-spline',
+                            negative: 'area-spline'
+                        },
+                         colors: {
+                           positive: 'lightblue',
+                           negative: 'lightpink'
+                         }
+                      });
+                  }, 8000);
+
+                  setTimeout(function () {
+                      chart.load({
+                        columns: [
+                            ['positive', 100, 87, 53, 20, 35, 40],
+                            ['negative', 190, 160, 170, 200, 193, 170]
+                        ],
+                        types: {
+                            positive: 'area-spline',
+                            negative: 'area-spline'
+                        },
+                         colors: {
+                           positive: 'lightblue',
+                           negative: 'lightpink'
+                         }
+                      });
+                  }, 10000);
+                </script>
+            </div>
+          </div>
+
+
+<!--         <div id="header" class="shrink collapse grid-content">
           <ul class="menu-bar primary">
             <li class="hide-for-medium"><a zf-open="sidebar" href="#">Menu</a></li>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Received</a></li>
+            <li><a href="#">Sent</a></li>
           </ul>
-        </div>
-        <div class="grid-block">
-          <div class="grid-block small-12 medium-9 vertical">
+        </div> -->
+
+<!--         <div class="grid-block">
+          <div class="grid-block small-12 medium-12 vertical">
             <div class="grid-content">
               <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
               <p>Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue.</p>
@@ -122,26 +232,18 @@
               <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat.</p>
               <hr />
             </div>
+
             <div class="message-input grid-content collapse shrink">
               <span class="inline-label">
                 <input type="text" placeholder="Message">
                 <a href="#" class="button">Send</a>
               </span>
             </div>
-          </div>
-          <div class="grid-content medium-3 show-for-medium message-side-bar">
-            <section class="block-list">
-              <header>In This Room</header>
-              <ul>
-                <li><a href="#">Cady Heron</a></li>
-                <li><a href="#">Kevin Gnapoor</a></li>
-                <li><a href="#">Trang Pak</a></li>
-                <li><a href="#">Coach Carr</a></li>
-                <li><a href="#">Regina George</a></li>
-              </ul>
-            </section>
+
           </div>
         </div>
+ -->
+
       </div>
 
     </div>

@@ -55,7 +55,7 @@ request('https://api.mlab.com/api/1/databases/athenahacks/collections/messages?a
   console.log(main.length);
   for(var i = 0; i < main.length; i++){
     console.log(main[i]["Message"]);
-    
+
     // document.getElementById('h4Tag').innerHTML = main[i]["Message"];
     //$("#panel1").click(function(){
     //$("h4").append("<p>" + main[i]["Message"] + "</p>");

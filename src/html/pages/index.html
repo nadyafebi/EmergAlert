@@ -38,6 +38,132 @@
   <div class="medium-5 small-12 columns">
     <h3>Notification</h3>
 
+    <div id="chart4"></div>
+    <script>
+      var chart = c3.generate({
+          bindto: '#chart4',
+          data: {
+              columns: [
+                  ['positive', 144, 225, 200, 80, 100, 87],
+                  ['negative', 70, 100, 80, 75, 190, 160]
+              ],
+              types: {
+                  positive: 'area-spline',
+                  negative: 'area-spline'
+              },
+               colors: {
+                 positive: 'lightblue',
+                 negative: 'lightpink'
+               }
+          }
+      });
+
+      setTimeout(function () {
+            chart.load({
+              columns: [
+                  ['positive', 225, 200, 80, 100, 87, 45],
+                  ['negative', 100, 80, 75, 190, 160, 68]
+              ],
+              types: {
+                  positive: 'area-spline',
+                  negative: 'area-spline'
+              },
+               colors: {
+                 positive: 'lightblue',
+                 negative: 'lightpink'
+               }
+            });
+        }, 2000);
+
+      setTimeout(function () {
+            chart.load({
+              columns: [
+                  ['positive', 200, 80, 100, 87, 45, 65],
+                  ['negative', 80, 75, 190, 160, 68, 89]
+              ],
+              types: {
+                  positive: 'area-spline',
+                  negative: 'area-spline'
+              },
+               colors: {
+                 positive: 'lightblue',
+                 negative: 'lightpink'
+               }
+            });
+        }, 4000);
+
+        setTimeout(function () {
+            chart.load({
+              columns: [
+                  ['positive', 80, 100, 87, 45, 65, 89],
+                  ['negative', 75, 190, 160, 68, 89, 111]
+              ],
+              types: {
+                  positive: 'area-spline',
+                  negative: 'area-spline'
+              },
+               colors: {
+                 positive: 'lightblue',
+                 negative: 'lightpink'
+               }
+            });
+        }, 6000);
+
+        var pos_num1 = 80; var pos_num2 = 100; var pos_num3 = 87; var pos_num4 = 45; var pos_num5 = 65; var pos_num6 = 89;
+        var neg_num1 = 75; var neg_num2 = 190; var neg_num3 = 160; var neg_num4 = 68; var neg_num5 = 89; var neg_num6 = 111;
+        
+        for (i = 8000; i <= 32000; i += 2000) {
+            console.log('going through loop');
+
+            setTimeout(function () {
+
+            // couldn't get
+
+            // if (pos_num6 != new_pos_senti & neg_num6 != new_neg_senti) {
+
+              // pos_num1 = pos_num2;
+              // pos_num2 = pos_num3;
+              // pos_num3 = pos_num4;
+              // pos_num4 = pos_num5;
+              // pos_num5 = pos_num6;
+              // pos_num6 = new_pos_senti;
+
+              // neg_num1 = neg_num2;
+              // neg_num2 = neg_num3;
+              // neg_num3 = neg_num4;
+              // neg_num4 = neg_num5;
+              // neg_num5 = neg_num6;
+              // neg_num6 = new_neg_senti;
+
+              chart.load({
+                columns: [
+                    // ['positive', pos_num1, pos_num2, pos_num3, pos_num4, pos_num5, new_pos_senti],
+                    // ['negative', neg_num1, neg_num2, neg_num3, neg_num4, neg_num5, new_neg_senti]
+                    ['positive', 100, 87, 45, 65, 89, new_pos_senti],
+                    ['negative', 190, 160, 68, 89, 111, new_neg_senti]
+                ],
+                types: {
+                    positive: 'area-spline',
+                    negative: 'area-spline'
+                },
+                 colors: {
+                   positive: 'lightblue',
+                   negative: 'lightpink'
+                 }
+              });
+          }, i);
+          
+        }
+      
+    </script>
+
+    <div class="message-input collapse shrink">
+      <span class="inline-label">
+        <input type="text" placeholder="Message">
+        <a href="#" class="button">Send</a>
+      </span>
+    </div>
+
     <div class="grid-frame">
 
       <div class="grid-block collapse medium-12 large-12 vertical">
@@ -107,144 +233,95 @@
                       }
                   });
 
-                  setTimeout(function () {
-                      chart.load({
-                        columns: [
-                            ['positive', 225, 300, 80, 100, 87, 53],
-                            ['negative', 100, 80, 75, 190, 160, 200]
-                        ],
-                        types: {
-                            positive: 'area-spline',
-                            negative: 'area-spline'
-                        },
-                         colors: {
-                           positive: 'lightblue',
-                           negative: 'lightpink'
-                         }
-                      });
-                  }, 2000);
+                  // setTimeout(function () {
+                  //     chart.load({
+                  //       columns: [
+                  //           ['positive', 225, 300, 80, 100, 87, 53],
+                  //           ['negative', 100, 80, 75, 190, 160, 200]
+                  //       ],
+                  //       types: {
+                  //           positive: 'area-spline',
+                  //           negative: 'area-spline'
+                  //       },
+                  //        colors: {
+                  //          positive: 'lightblue',
+                  //          negative: 'lightpink'
+                  //        }
+                  //     });
+                  // }, 2000);
 
-                  setTimeout(function () {
-                      chart.load({
-                        columns: [
-                            ['positive', 300, 80, 100, 87, 53, 20],
-                            ['negative', 80, 75, 190, 160, 200, 220]
-                        ],
-                        types: {
-                            positive: 'area-spline',
-                            negative: 'area-spline'
-                        },
-                         colors: {
-                           positive: 'lightblue',
-                           negative: 'lightpink'
-                         }
-                      });
-                  }, 4000);
+                  // setTimeout(function () {
+                  //     chart.load({
+                  //       columns: [
+                  //           ['positive', 300, 80, 100, 87, 53, 20],
+                  //           ['negative', 80, 75, 190, 160, 200, 220]
+                  //       ],
+                  //       types: {
+                  //           positive: 'area-spline',
+                  //           negative: 'area-spline'
+                  //       },
+                  //        colors: {
+                  //          positive: 'lightblue',
+                  //          negative: 'lightpink'
+                  //        }
+                  //     });
+                  // }, 4000);
 
-                  setTimeout(function () {
-                      chart.load({
-                        columns: [
-                            ['positive', 80, 100, 87, 53, 20, 35],
-                            ['negative', 75, 190, 160, 170, 200, 193]
-                        ],
-                        types: {
-                            positive: 'area-spline',
-                            negative: 'area-spline'
-                        },
-                         colors: {
-                           positive: 'lightblue',
-                           negative: 'lightpink'
-                         }
-                      });
-                  }, 6000);
+                  // setTimeout(function () {
+                  //     chart.load({
+                  //       columns: [
+                  //           ['positive', 80, 100, 87, 53, 20, 35],
+                  //           ['negative', 75, 190, 160, 170, 200, 193]
+                  //       ],
+                  //       types: {
+                  //           positive: 'area-spline',
+                  //           negative: 'area-spline'
+                  //       },
+                  //        colors: {
+                  //          positive: 'lightblue',
+                  //          negative: 'lightpink'
+                  //        }
+                  //     });
+                  // }, 6000);
 
-                  setTimeout(function () {
-                      chart.load({
-                        columns: [
-                            ['positive', 80, 100, 87, 53, 20, 35],
-                            ['negative', 75, 190, 160, 170, 200, 193]
-                        ],
-                        types: {
-                            positive: 'area-spline',
-                            negative: 'area-spline'
-                        },
-                         colors: {
-                           positive: 'lightblue',
-                           negative: 'lightpink'
-                         }
-                      });
-                  }, 8000);
+                  // setTimeout(function () {
+                  //     chart.load({
+                  //       columns: [
+                  //           ['positive', 80, 100, 87, 53, 20, 35],
+                  //           ['negative', 75, 190, 160, 170, 200, 193]
+                  //       ],
+                  //       types: {
+                  //           positive: 'area-spline',
+                  //           negative: 'area-spline'
+                  //       },
+                  //        colors: {
+                  //          positive: 'lightblue',
+                  //          negative: 'lightpink'
+                  //        }
+                  //     });
+                  // }, 8000);
 
-                  setTimeout(function () {
-                      chart.load({
-                        columns: [
-                            ['positive', 100, 87, 53, 20, 35, 40],
-                            ['negative', 190, 160, 170, 200, 193, 170]
-                        ],
-                        types: {
-                            positive: 'area-spline',
-                            negative: 'area-spline'
-                        },
-                         colors: {
-                           positive: 'lightblue',
-                           negative: 'lightpink'
-                         }
-                      });
-                  }, 10000);
+                  // setTimeout(function () {
+                  //     chart.load({
+                  //       columns: [
+                  //           ['positive', 100, 87, 53, 20, 35, 40],
+                  //           ['negative', 190, 160, 170, 200, 193, 170]
+                  //       ],
+                  //       types: {
+                  //           positive: 'area-spline',
+                  //           negative: 'area-spline'
+                  //       },
+                  //        colors: {
+                  //          positive: 'lightblue',
+                  //          negative: 'lightpink'
+                  //        }
+                  //     });
+                  // }, 10000);
                 </script>
             </div>
           </div>
-
-
-<!--         <div id="header" class="shrink collapse grid-content">
-          <ul class="menu-bar primary">
-            <li class="hide-for-medium"><a zf-open="sidebar" href="#">Menu</a></li>
-            <li><a href="#">Received</a></li>
-            <li><a href="#">Sent</a></li>
-          </ul>
-        </div> -->
-
-<!--         <div class="grid-block">
-          <div class="grid-block small-12 medium-12 vertical">
-            <div class="grid-content">
-              <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
-              <p>Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue.</p>
-              <hr />
-              <h4><img src="http://placehold.it/30x30"> Kevin Gnapoor</h4>
-              <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat.</p>
-              <hr />
-              <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
-              <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat.</p>
-              <hr />
-              <h4><img src="http://placehold.it/30x30"> Trang Pak</h4>
-              <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat.</p>
-              <hr />
-              <h4><img src="http://placehold.it/30x30"> Coach Carr</h4>
-              <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat.</p>
-              <hr />
-              <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
-              <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat.</p>
-              <hr />
-              <h4><img src="http://placehold.it/30x30"> Trang Pak</h4>
-              <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat.</p>
-              <hr />
-              <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
-              <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat.</p>
-              <hr />
-            </div>
-
-            <div class="message-input grid-content collapse shrink">
-              <span class="inline-label">
-                <input type="text" placeholder="Message">
-                <a href="#" class="button">Send</a>
-              </span>
-            </div>
-
-          </div>
-        </div>
- -->
-
       </div>
+                
 
     </div>
 

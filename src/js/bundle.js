@@ -1,7 +1,8 @@
 /*
   Modules
 */
+global.jQuery = require('jquery');
 const $ = require('jquery');
-const foundation = reqire('../../node_modules/foundation-sites/dist/js/foundation.js');
+const foundation = require('../../node_modules/foundation-sites/dist/js/foundation.js');
 
 $(document).foundation();

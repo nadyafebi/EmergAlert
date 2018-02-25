@@ -32,3 +32,7 @@ function html(page) {
 app.get('/', function(req, res) {
   res.sendFile(html('index'));
 });
+
+app.get('/test', function(req, res) {
+  res.sendFile(html('test'));
+});

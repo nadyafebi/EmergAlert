@@ -1,6 +1,7 @@
+@import 'foundation-sites';
 @import 'messages';
 
-/* 
+/*
   styles for bing maps
 */
 .contourLegend {
@@ -46,7 +47,13 @@
 }
 
 #security-feed {
-  height: 50%;
+  background: $black;
+  height: 65vh;
+}
+
+#rec {
+  max-height: 37.5px;
+  position: absolute;
 }
 
 /*

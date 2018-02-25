@@ -9635,7 +9635,7 @@ blockquote p {
   float: none; }
 
 /*# sourceMappingURL=app.css.map */
-/* 
+/*
   styles for bing maps
 */
 .contourLegend {
@@ -9644,7 +9644,6 @@ blockquote p {
   text-align: center;
   width: 600px;
   height: 50px;
-  padding-left: 10px;
   padding-right: 10px; }
 
 .map-padding {
@@ -9675,7 +9674,12 @@ blockquote p {
   padding: 1.25rem; }
 
 #security-feed {
-  height: 50%; }
+  background: #0a0a0a;
+  height: 65vh; }
+
+#rec {
+  max-height: 37.5px;
+  position: absolute; }
 
 /*
   Utilities

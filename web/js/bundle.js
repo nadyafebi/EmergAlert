@@ -1,4 +1,48 @@
 (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define([], factory);
+    } else {
+        root.captureVideoFrame = factory();
+    }
+}(this, function () {
+    return function captureVideoFrame(video, format, quality) {
+        if (typeof video === 'string') {
+            video = document.getElementById(video);
+        }
+
+        format = format || 'jpeg';
+        quality = quality || 0.92;
+
+        if (!video || (format !== 'png' && format !== 'jpeg')) {
+            return false;
+        }
+
+        var canvas = document.createElement("CANVAS");
+
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        canvas.getContext('2d').drawImage(video, 0, 0);
+
+        var dataUri = canvas.toDataURL('image/' + format, quality);
+        var data = dataUri.split(',')[1];
+        var mimeType = dataUri.split(';')[0].slice(5)
+
+        var bytes = window.atob(data);
+        var buf = new ArrayBuffer(bytes.length);
+        var arr = new Uint8Array(buf);
+
+        for (var i = 0; i < bytes.length; i++) {
+            arr[i] = bytes.charCodeAt(i);
+        }
+
+        var blob = new Blob([ arr ], { type: mimeType });
+        return { blob: blob, dataUri: dataUri, format: format };
+    };
+}));
+
+},{}],2:[function(require,module,exports){
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -11906,7 +11950,7 @@ ResponsiveAccordionTabs.defaults = {};
 
 /***/ })
 /******/ ]);
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.3.1
  * https://jquery.com/
@@ -22272,7 +22316,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 (function (global){
 /*
   Modules
@@ -22280,8 +22324,16 @@ return jQuery;
 global.jQuery = require('jquery');
 const $ = require('jquery');
 const foundation = require('../../node_modules/foundation-sites/dist/js/foundation.js');
+const vid = require('capture-video-frame');
 
 $(document).foundation();
 
+// Video Capture
+$('#captureButton').click(function() {
+  console.log("Capture!");
+  var frame = vid.captureVideoFrame('myvid', 'png');
+  $('#myimg').attr('src', frame.dataUri);
+});
+
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../../node_modules/foundation-sites/dist/js/foundation.js":1,"jquery":2}]},{},[3]);
+},{"../../node_modules/foundation-sites/dist/js/foundation.js":2,"capture-video-frame":1,"jquery":3}]},{},[4]);

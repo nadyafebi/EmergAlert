@@ -4,15 +4,85 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation for Sites</title>
+    <title>School Security System</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/app.css">
     <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet">
+
+    <!-- script for bing maps -->
+
+    <script type='text/javascript'>
+    var map;
+    //URL to the USGS for Earthquake intensity contours of M7.0 – 1km WSW of Kumamoto-shi, Japan.
+    var earthquakeIntensityDataUrl = '/data/heatmap.json'; //'http://earthquake.usgs.gov/archive/product/shakemap/us20005iis/us/1467057010522/download/cont_psa03.json';
+    function GetMap() {
+        map = new Microsoft.Maps.Map('#myMap', {
+            center: new Microsoft.Maps.Location(32.944332, 131.074968),
+            zoom: 9
+        });
+        //Load the Contour and GeoJson modules.
+        Microsoft.Maps.loadModule(['Microsoft.Maps.Contour', 'Microsoft.Maps.GeoJson'], function () {
+            //Download the contour data from the USGS. Parse the GeoJson earthquake intensity contour data and create contour lines out of them.
+            Microsoft.Maps.GeoJson.readFromUrl(earthquakeIntensityDataUrl, function (data) {
+                var contourLines = [];
+                for (var i = 0; i < data.length; i++) {
+                    contourLines.push(new Microsoft.Maps.ContourLine(data[i].getLocations(), data[i].metadata.value));
+                }
+                //Add the contour lines to a contour layer.
+                var layer = new Microsoft.Maps.ContourLayer(contourLines, {
+                    colorCallback: assignContourColor,
+                    polygonOptions: {
+                        //Make the outlines of the contour area transparent.
+                        strokeColor: 'rgba(0, 0, 0, 0)'
+                    }
+                });
+                //Add the contour layer to the map.
+                map.layers.insert(layer);
+            });
+        });
+    }
+    //A function that contains business logic that specifies which color to make a contour area based on it's value.
+    function assignContourColor(value) {
+        var color = 'rgba(25, 150, 65, 0.5)';
+        if (value >= 200) {
+            color = 'rgba(215, 25, 28, 0.5)';
+        }
+        else if (value >= 160) {
+            color = 'rgba(235, 140, 14, 0.5)';
+        }
+        else if (value >= 120) {
+            color = 'rgba(255, 255, 0, 0.5)';
+        }
+        else if (value >= 80) {
+            color = 'rgba(140, 202, 32, 0.5)';
+        }
+        return color;
+    }
+    </script>
+
+    <!-- style for map and for chat messages --> 
+
+    <style>
+        .contourLegend {
+            margin-left: 10px;
+            float: left;
+            text-align: center;
+            width: 100px;
+        }
+
+        .message-input, .message-input .inline-label, .menu-bar {margin-bottom: 0;}
+        #sidebar, .messages {border-right: 1px solid #eee;}
+        .message-side-bar {border-left: 1px solid #eee;}
+        .avatar-section {border-top: 1px solid #eee;}
+    </style>
+
   </head>
+
   <body>
 
     <div id="navbar" class="expanded row align-middle">
       <div class="small-6 columns">
-        <h3>School Security System</h3>
+        <h3 style="color: white">School Security System</h3>
       </div>
       <div class="small-6 columns text-right">
         <p>A</p>
@@ -20,7 +90,7 @@
     </div>
     
     <div id="content" class="row">
-      <div class="full-height small-6 columns">
+      <div class="full-height medium-6 columns">
         <div id="security-feed" class="row column">
           <div class="full-height card">
             <div class="card-section">
@@ -30,10 +100,84 @@
         </div>
         <div id="controls" class="row column">
           <h3>Controls</h3>
+
+          <div id="myMap" style="position:relative;width:600px;height:400px;float:left;"></div>
+
+          <div class="contourLegend">
+              <div style="background-color: rgba(215, 25, 28, 0.5)">200%g</div>
+              <div style="background-color: rgba(235, 140, 14, 0.5)">160%g</div>
+              <div style="background-color: rgba(255, 255, 0, 0.5)">120%g</div>
+              <div style="background-color: rgba(140, 202, 32, 0.5)">80%g</div>
+              <div style="background-color: rgba(25, 150, 65, 0.5)">40%g</div>
+          </div>
+
         </div>
       </div>
-      <div class="small-6 columns">
+      <div class="medium-6 small-12 columns">
         <h3>Notification</h3>
+    
+    <div class="grid-frame">
+    
+          <div class="grid-block collapse medium-12 large-12 vertical">
+            <div id="header" class="shrink collapse grid-content">
+              <ul class="menu-bar primary">
+                <li class="hide-for-medium"><a zf-open="sidebar" href="#">Menu</a></li>
+                <li><a href="#">Received</a></li>
+                <li><a href="#">Sent</a></li>
+              </ul>
+            </div>
+            <div class="grid-block">
+              <div class="grid-block small-12 medium-12 vertical">
+                <div class="grid-content">
+                  <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                  <p>i think i hear something!</p>
+                  <hr />
+                  <h4><img src="http://placehold.it/30x30"> Kevin Gnapoor</h4>
+                  <p>SOS HELP</p>
+                  <hr />
+                  <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                  <p>where is it coming from???</p>
+                  <hr />
+                  <h4><img src="http://placehold.it/30x30"> Trang Pak</h4>
+                  <p>why meeeeee</p>
+                  <hr />
+                  <h4><img src="http://placehold.it/30x30"> Coach Carr</h4>
+                  <p>at least i won't need to take midterms tomorrow</p>
+                  <hr />
+                  <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                  <p>sorry i shouldn't be joking about this</p>
+                  <hr />
+                  <h4><img src="http://placehold.it/30x30"> Trang Pak</h4>
+                  <p>i think i see something :o</p>
+                  <hr />
+                  <h4><img src="http://placehold.it/30x30"> Cady Heron</h4>
+                  <p>TT_TT</p>
+                  <hr />
+                </div>
+                <div class="message-input grid-content collapse shrink">
+                  <span class="inline-label">
+                    <input type="text" placeholder="Message">
+                    <a href="#" class="button">Send</a>
+                  </span>
+                </div>
+              </div>
+              <!-- <div class="grid-content medium-3 show-for-medium message-side-bar">
+                <section class="block-list">
+                  <header>In This Room</header>
+                  <ul>
+                    <li><a href="#">Cady Heron</a></li>
+                    <li><a href="#">Kevin Gnapoor</a></li>
+                    <li><a href="#">Trang Pak</a></li>
+                    <li><a href="#">Coach Carr</a></li>
+                    <li><a href="#">Regina George</a></li>
+                  </ul>
+                </section>
+              </div> -->
+            </div>
+          </div>
+    
+        </div>
+    
       </div>
     </div>
     

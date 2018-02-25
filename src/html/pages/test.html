@@ -13,7 +13,7 @@
     <div class="small-6 columns card">
       <div class="card-section">
         <div class="responsive-embed">
-          <video autoplay>
+          <video id="myvid" autoplay controls>
             <source src="vid/cam.mp4" type="video/mp4">
           </video>
         </div>
@@ -22,6 +22,10 @@
 
     <!-- Frame by Frame View -->
     <div class="small-6 columns card">
+      <div class="card-section">
+        <button id="captureButton" class="primary button">Capture</button>
+        <img id="myimg">
+      </div>
     </div>
   </div>
 

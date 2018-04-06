@@ -51,9 +51,13 @@
   height: 65vh;
 }
 
-#rec {
+.rec {
   max-height: 37.5px;
   position: absolute;
+}
+
+.recB {
+  background: $black;
 }
 
 /*

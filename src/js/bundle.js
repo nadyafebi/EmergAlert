@@ -8,8 +8,11 @@ const vid = require('capture-video-frame');
 
 $(document).foundation();
 
+console.log("Started");
+
 // Video Capture
 $('#captureButton').click(function() {
+  console.log("Click!");
   setInterval(function() {
     var frame = vid.captureVideoFrame('myvid', 'png');
     $('#myimg').attr('src', frame.dataUri);
@@ -38,8 +41,13 @@ function postImage(img) {
     })
     .done(function(data) {
       console.log("success");
-      console.log(data);
-      $('#mydata').text(data.Predictions[0].Probability);
+      var prob = data.Predictions[0].Probability;
+      console.log(prob);
+      $('#mydata').text(prob);
+      if (prob > 0.9) {
+        alert("SHOOTER DETECTED");
+      }
+
     })
     .fail(function(data) {
       console.log("error");

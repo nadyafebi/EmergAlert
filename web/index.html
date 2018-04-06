@@ -15,7 +15,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <sript src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></sript>
 
-    <script src="/js/bundle.js"></script>
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.21/c3.min.js"></script>
@@ -25,7 +24,6 @@
     <script src="/js/bing_maps.js"></script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AmA3g4fVkW_W0260B6WfwDR13pRvztfOlwIOEnuS01boL8g_SMA6IUhf_gx0EicT' async defer></script>
     <script src="/js/sentiment.js"></script>
-    <script src="/server.js"></script>
 
   </head>
   <body>
@@ -34,13 +32,16 @@
       <div class="small-6 columns">
         <h3 style="color: white">EmergAlert</h3>
       </div>
+      <div class="small-6 columns text-right">
+        <button id="captureButton" class="primary button">Start</button>
+      </div>
     </div>
     
     <div id="content" class="row">
       <div class="full-height medium-7 columns">
         <div id="security-feed" class="row column card">
           <div class="card-section">
-            <img id="rec" src="img/rec.png">
+            <img src="img/rec.png" class="rec">
             <div class="responsive-embed">
               <video id="myvid" autoplay controls>
                 <source src="vid/cam.mp4" type="video/mp4" />
@@ -237,5 +238,6 @@
     </div>
     
 
+    <script src="/js/bundle.js"></script>
   </body>
 </html>

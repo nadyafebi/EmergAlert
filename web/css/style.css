@@ -9677,9 +9677,12 @@ blockquote p {
   background: #0a0a0a;
   height: 65vh; }
 
-#rec {
+.rec {
   max-height: 37.5px;
   position: absolute; }
+
+.recB {
+  background: #0a0a0a; }
 
 /*
   Utilities

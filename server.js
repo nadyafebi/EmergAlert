@@ -6,11 +6,14 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 var request = require('request');
-var mongoose = require('mongoose');
+var twilio = require('twilio');
 
-var uri = process.env.DB_URL;
-mongoose.connect(uri);
-var db = mongoose.connection;
+var accountSid = process.env.ACCOUNTSID; // Your Account SID from www.twilio.com/console
+var authToken = process.env.AUTHTOKEN;   // Your Auth Token from www.twilio.com/console
+
+var client = require('twilio')(accountSid, authToken);
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
+
 /*
   Express Setup
 */
@@ -44,21 +47,20 @@ app.get('/test', function(req, res) {
   res.sendFile(html('test'));
 });
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', function() {
-    console.log('MongoDB successfully  connected!');
-});
+app.post('/alert', function(req, res) {
+  console.log("Alert detected");
+  res.end();
 
-request('https://api.mlab.com/api/1/databases/athenahacks/collections/messages?apiKey=o2gZ1lynVLWp2xf46oNSrA0avHlH5rUI', { json: true }, (err, res, main) => {
-
-  if (err) { return console.log(err); }
-  console.log(main.length);
-  for(var i = 0; i < main.length; i++){
-    console.log(main[i]["Message"]);
-
-    // document.getElementById('h4Tag').innerHTML = main[i]["Message"];
-    //$("#panel1").click(function(){
-    //$("h4").append("<p>" + main[i]["Message"] + "</p>");
-//});
-}
-});
+  request('https://api.mlab.com/api/1/databases/athenahacks/collections/students?apiKey='+process.env.API_KEY, { json: true }, (err, res, main) => {
+    if (err) { return console.log(err); }
+    console.log(main.length + " Success!") ;
+    for(var i = 0; i < main.length; i++){
+      client.messages.create({
+          body: "This is an alert!! not really this is Diane testing. there is a shooting going on in the school. Stay safe.\n PS: Not sorry for disturbing.",
+          to: main[i]["phoneNumber"],  // Text this number
+          from: process.env.SENDERNUM // From a valid Twilio number
+      })
+      .then((message) => console.log(message.sid));
+  }
+  })
+})

@@ -42,10 +42,15 @@ function postImage(img) {
     .done(function(data) {
       console.log("success");
       var prob = data.Predictions[0].Probability;
-      console.log(prob);
+      console.log(data);
       $('#mydata').text(prob);
       if (prob > 0.9) {
-        alert("SHOOTER DETECTED");
+        $.ajax({
+          url: "/alert",
+          type: "POST"
+        }).done(function() {
+          alert("SHOOTER DETECTED");
+        });
       }
 
     })
